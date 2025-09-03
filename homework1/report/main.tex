@@ -1,0 +1,90 @@
+% !TEX TS-program = pdflatex
+
+%%%%%%%%%% NO MODIFICAR  %%%%%%
+\documentclass[journal]{IEEEtran}
+\IEEEoverridecommandlockouts
+\input{Configuracion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% INICIO DEL DOCUMENTO %%%%%
+%      AREA CONFIGURABLE       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%Titulo
+\title{\textcolor{black}{Report on 10.2-10.8}}      
+
+%Datos
+\author{Shenyao Jin} 
+
+
+\maketitle
+
+
+\section{Code Snapshot}
+\begin{verbatim}
+# Homework 1, CV
+# Shenyao Jin, shenyaojin@mines.edu
+#%% Import libs
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage.io import imread
+#%% Define data path
+data_path = "./data/IMG_5167.jpeg"
+
+#%% Load image
+image = imread(data_path)
+rotated_image = np.rot90(image, k=3) # Need to rotate the image
+#%% Show image
+plt.figure()
+plt.imshow(rotated_image)
+plt.axis("off")
+plt.show()
+
+#%% Change the dtype to float32 and convert into grayscale
+image_float = rotated_image.astype(np.float32)
+image_gray = np.dot(image_float, [0.299, 0.587, 0.114])
+
+#%% Show grayscale image
+plt.figure()
+plt.imshow(image_gray, cmap='gray')
+plt.axis("off")
+plt.show()
+
+#%% Print the top left (3*5) pixels of the grayscale image
+print(image_gray[:3,:5])
+
+#%% Print index=(1,2) of image_gray. We assume the index start from 1.
+print(image_gray[0,1])
+\end{verbatim}
+
+\section{Grayscale Image Snapshot}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{../data/gray_scale_figure.png}
+    \caption{Grayscale Image}
+\end{figure}
+
+\section{Pixel Values}
+
+\subsection{Top Left 3x5 Matrix}
+\begin{verbatim}
+[[179.789 180.789 177.789 172.789 170.789]
+ [178.789 178.789 176.789 174.789 171.789]
+ [179.789 178.789 177.789 177.789 177.789]]
+\end{verbatim}
+
+\subsection{Pixel at (1,2)}
+The value of the pixel at index (1,2) is 180.789.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+
+
+
+
+
